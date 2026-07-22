@@ -1,0 +1,378 @@
+/* ================================
+   1. CSS VARIABLES (THEMING)
+================================ */
+:root{
+
+--primary:#2563eb;
+--accent:#f97316;
+--text:#222;
+--bg:#041e50;
+--radius:14px;
+--shadow:0 12px 24px rgba(119, 7, 7, 0.418);
+--title-size:clamp(2rem,4vw,3.5rem);
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+body.dark {
+  --bg: #111;
+  --text: #0f0101;
+  --primary: #0d6efd;
+  --accent: #ff8787;
+}
+
+
+body{
+background:var(--bg);
+color:var(--text);
+}
+/* ================================
+   2. HEADER (Flexbox)
+================================ */
+header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 50px;
+background:white;
+position:sticky;
+top:0;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+z-index:100;
+
+}
+
+.logo{
+
+font-size:28px;
+font-weight:bold;
+color:var(--primary);
+
+}
+
+nav{
+display:flex;
+gap:15px;
+}
+
+.btn{
+
+padding:10px 20px;
+border:none;
+cursor:pointer;
+border-radius:var(--radius);
+transition:.3s;
+
+}
+
+.login{
+
+background:var(--primary);
+color:white;
+
+}
+
+.cart{
+
+background:var(--accent);
+color:white;
+position:relative;
+
+}
+
+.badge{
+
+position:absolute;
+top:-8px;
+right:-8px;
+
+background:red;
+color:white;
+width:22px;
+height:22px;
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:12px;
+
+}
+
+.btn:hover{
+
+transform:translateY(-3px);
+box-shadow:var(--shadow);
+
+}
+/* ================================
+   3. HERO SECTION
+================================ */
+.hero{
+
+position:relative;
+padding:120px 30px;
+text-align:center;
+background:linear-gradient(135deg,#111,#222,#333);
+overflow:hidden;
+color:rgb(78, 4, 4);
+animation:fade 1.2s ease;
+
+}
+
+.hero::before{
+
+content:"";
+position:absolute;
+width:250px;
+height:250px;
+background:rgba(255,255,255,.08);
+border-radius:50%;
+top:-70px;
+left:-70px;
+
+}
+
+.hero::after{
+content:"";
+position:absolute;
+width:300px;
+height:300px;
+background:rgba(255,255,255,.05);
+border-radius:50%;
+bottom:-120px;
+right:-80px;
+
+}
+
+.hero h1{
+font-size:var(--title-size);
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+margin-bottom:25px;
+}
+
+.cta{
+padding:15px 35px;
+background:var(--accent);
+color:white;
+border:none;
+border-radius:var(--radius);
+cursor:pointer;
+transition:.3s;
+
+}
+.cta:hover{
+transform:scale(1.05);
+}
+/* FILTER */
+
+.filters{
+display:flex;
+justify-content:center;
+gap:15px;
+padding:30px;
+flex-wrap:wrap;
+
+}
+
+.pill{
+padding:12px 22px;
+border-radius:50px;
+border:none;
+background:#ddd;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.pill:hover:not(.active){
+background:var(--primary);
+color:white;
+
+}
+
+.pill:focus-visible{
+outline:3px solid var(--accent);
+
+}
+
+.active{
+background:var(--accent);
+color:white;
+
+}
+/* PRODUCTS */
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+padding:40px;
+
+}
+
+.card{
+position:relative;
+background:white;
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+padding:20px;
+transition:.3s;
+overflow:hidden;
+
+}
+
+.card:hover{
+transform:translateY(-8px);
+
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+margin-bottom:15px;
+
+}
+
+.price{
+margin:15px 0;
+
+}
+
+.new{
+font-size:22px;
+font-weight:bold;
+color:var(--primary);
+
+}
+
+.old{
+margin-left:10px;
+text-decoration:line-through;
+color:gray;
+
+}
+
+.card button{
+width:100%;
+padding:12px;
+border:none;
+background:var(--primary);
+color:white;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.card button:hover{
+background:var(--accent);
+
+}
+
+.sale::before{
+content:"SALE";
+position:absolute;
+top:10px;
+left:-30px;
+transform:rotate(-45deg);
+background:red;
+color:white;
+padding:5px 40px;
+
+}
+
+.stock::after{
+content:"LOW STOCK";
+position:absolute;
+top:10px;
+right:10px;
+background:orange;
+padding:5px 10px;
+font-size:12px;
+color:white;
+border-radius:20px;
+
+}
+
+[data-rating^="4.8"]{
+border:3px dashed gold;
+
+}
+
+.btn--added{
+background:green!important;
+
+}
+
+/* ================================
+   4. BUTTON (Animations + Transitions)
+================================ */
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(-40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:640px){
+header{
+padding:15px;
+flex-direction:column;
+gap:15px;
+
+}
+
+.btn{
+padding:8px 15px;
+
+}
+
+.hero{
+padding:80px 20px;
+
+}
+
+.products{
+grid-template-columns:1fr;
+
+}
+
+.filters{
+justify-content:center;
+
+}
+
+}
+
+/* ================================
+   8. MEDIA QUERY EXAMPLE
+================================ */
+@media (max-width: 480px) {
+  .hero {
+    padding: 3rem 1rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}
